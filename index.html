@@ -1,0 +1,76 @@
+<html lang="en">
+	<script>
+		function computerPlay() {
+			let plays = {0: "rock", 1: "paper", 2: "scissors"};
+
+			function getRandomInt(max) {
+				return Math.floor(Math.random() * Math.floor(max));
+			}
+
+			let randomPlay = getRandomInt(3);
+			return plays[randomPlay];
+		}
+
+		function playRound(playerSelection, computerSelection) {
+			let playerHand = playerSelection.toLowerCase();
+			let computerHand = computerSelection.toLowerCase();
+
+			let winMessage = "You won!";
+			let loseMessage = "You lost!";
+			let tieMessage = "It's a tie!";
+
+			if (playerHand === "rock") {
+				if (computerHand === "scissors") {
+					return winMessage;
+				} else if (computerHand === "paper") {
+					return loseMessage;
+				} else {
+					return tieMessage;
+				}
+			} else if (playerHand === "paper") {
+				if (computerHand === "rock") {
+					return winMessage;
+				} else if (computerHand === "scissors") {
+					return loseMessage;
+				} else {
+					return tieMessage;
+				}
+			} else if (playerHand === "scissors") {
+				if (computerHand === "paper") {
+					return winMessage;
+				} else if (computerHand === "rock") {
+					return loseMessage;
+				} else {
+					return tieMessage;
+				}
+			} else {
+				return "Something went wrong!";
+			}
+		}
+
+		function game() {
+			let score = 0;
+			for (let i = 0; i < 5; i++) {
+				playerHand = window.prompt("Pick \"rock, paper, or scissors\"");
+				computerHand = computerPlay();
+				let result = playRound(playerHand, computerHand);
+				console.log(result);
+				if (result === "You won!") {
+					score += 1;
+				} else if (result === "You lost!") {
+					score -= 1;
+				}
+			}
+			if (score > 0) {
+				console.log("You won the match!")
+				return 1;
+			} else if (score < 0) {
+				console.log("You lost the match!")
+				return -1;
+			} else {
+				console.log("The match was a tie!")
+				return 0;
+			}
+		}
+	</script>
+</html>
